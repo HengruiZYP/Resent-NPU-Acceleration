@@ -46,9 +46,9 @@ sudo pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 - 修改model文件夹下的config.json，如下：
     ```json
     {
-        "mode": "professional", //固定字段无需修改
-        "model_dir": "./model", //模型文件路径 
-        "model_file": "model" //固定为model，无需修改
+        "mode": "professional", #固定字段无需修改
+        "model_dir": "./model", #模型文件路径 
+        "model_file": "model" #固定为model，无需修改
     }
     ```
         
