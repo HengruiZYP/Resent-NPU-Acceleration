@@ -1,11 +1,18 @@
 # 一、模型说明
-该模型用于目标检测任务，基于PaddleClass2.5进行模型训练，paddle版本使用2.4.0，输入数据尺寸为224x224，数据格式为Imagenet格式。
+该模型用于图像分类任务，基于PaddleClass2.5进行模型训练，paddle版本使用2.4.0，输入数据尺寸为224x224，数据格式为Imagenet格式。
 
 # 二、效果预览
 可视化结果:
 
 <img src="vedio/resnet.gif" width="40%">
 
+在经过NPU加速之后，推理时间缩短了95倍左右
+
+如下图所示 运行test.py进行对比
+
+paddle是CPU推理，ppnc是NPU推理
+
+<img src="vedio/diff.png" width="30%">
 
 # 三、使用方式
 ## 3.1 模型训练
@@ -122,7 +129,7 @@ sudo pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
   
   <img src="resnet-python/vis.jpg" width="30%">
 
-## 3.3.2 paddle、ppnc对比测试
+## 3.4 paddle、ppnc对比测试
 - 模型文件   
     确保aistudio上导出的paddle静态图模型文件(xx.pdmodel)和(xx.pdiparams)已经传输至板卡，置于resnet/model目录下。
 - 执行测试  
@@ -142,16 +149,16 @@ sudo pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
         - test_dir: 测试图片文件夹路径  
         - output_dir: 存放结果文件，分别存放paddle和ppnc结果数据。
 
-## 3.4 实际项目部署
+## 3.5 实际项目部署
 实际用于项目中时，仅需要部分脚本，因此需要提取部署包并置于实际的项目代码中运行。
 
-### 3.4.1 提取部署包
+### 3.5.1 提取部署包
 确保当前位于/home/edgeboard/Resnet-NPU-Acceleration/resnet-python/,执行以下命令导出用于项目部署的zip包：
 ```shell
 sudo ./extract.sh
 ```
 执行成功后会在当前目录生成resnet_deploy.zip压缩包。
-### 3.4.2 使用部署包
+### 3.5.2 使用部署包
 - 准备ppnc模型及配置文件  
     将模型转换阶段生成的model.json和model.nb模型文件拷贝到项目能访问的目录，并参照3.3.1的方式编写模型配置文件config.json。
 - 准备环境   
