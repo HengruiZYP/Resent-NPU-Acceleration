@@ -9,7 +9,7 @@ import paddle
 from paddle import fluid
 import warnings
 import pickle
-
+import time
 parent_path = os.path.abspath(os.path.join(__file__, *([".."] * 2)))
 sys.path.insert(0, parent_path)
 
@@ -143,8 +143,21 @@ def main(args):
         print(image_file)
         img = cv2.imread(image_path)
 
+
+
+
+        start_time_ppnc = time.time()
         ppnc_res = ppnc_infer.predict_image(img)
+        end_time_ppnc = time.time()
+        ppnc_time = end_time_ppnc - start_time_ppnc
+
+        start_time_paddle = time.time()
         paddle_res = paddle_infer.predict_image(img)
+        end_time_paddle = time.time()
+        paddle_time = end_time_paddle - start_time_paddle
+
+        print(f'ppnc   time: {ppnc_time}')
+        print(f'Paddle time: {paddle_time}\n')
 
         ppnc_original = ppnc_res["original"]
         paddle_original = paddle_res["original"]
