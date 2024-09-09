@@ -142,15 +142,12 @@ def main(args):
         image_path = os.path.join(test_dir, image_file)
         print(image_file)
         img = cv2.imread(image_path)
-
-
-
-
+        # ppnc detector
         start_time_ppnc = time.time()
         ppnc_res = ppnc_infer.predict_image(img)
         end_time_ppnc = time.time()
         ppnc_time = end_time_ppnc - start_time_ppnc
-
+        # paddle detector
         start_time_paddle = time.time()
         paddle_res = paddle_infer.predict_image(img)
         end_time_paddle = time.time()
