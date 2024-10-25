@@ -2,6 +2,9 @@
 该模型用于图像分类任务，基于PaddleClass2.5进行模型训练，paddle版本使用2.4.0，输入数据尺寸为224x224，数据格式为Imagenet格式。
 
 # 二、效果预览
+
+<img src="vedio/EdgeBoard_DK-1A.png" width="70%">
+
 可视化结果:
 
 <img src="vedio/resnet.gif" width="40%">
